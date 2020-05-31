@@ -8,6 +8,7 @@ import EmbedUnsplash from './embed-unsplash-image';
 import EmbedYouTube from './embed-youtube-video';
 import Link from './link';
 import Menu from './menu';
+import NumberInput from './number-input';
 import RestartLink from './restart-link';
 import RevealLink from './reveal-link';
 import SoundEffect from './sound-effect';
@@ -24,6 +25,7 @@ export default [
 	EmbedYouTube,
 	Link,
 	Menu,
+	NumberInput,
 	RestartLink,
 	RevealLink,
 	SoundEffect,
