@@ -1,5 +1,7 @@
 // Handles if, unless, and else modifiers.
 
+import newFunction from '../../util/new-function';
+
 export default {
 	match: /^if(always|never)?\s|else$|unless\s/i,
 	processRaw(output, {invocation, state}) {
@@ -7,7 +9,10 @@ export default {
 		let condition;
 
 		if (type !== 'else') {
-			condition = new Function('return ' + invocation.replace(/.*?\s/, ''));
+			condition = newFunction(
+				'return ' + invocation.replace(/.*?\s/, ''),
+				`Cannot use this condition: [${invocation}]`
+			);
 		}
 
 		switch (type) {
