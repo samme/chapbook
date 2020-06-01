@@ -25,6 +25,12 @@ describe('parse()', () => {
 		expect(result.vars[2].name).toEqual('BAZ');
 	});
 
+	test('throws an error for bad expressions', () => {
+		expect(() => parse("foo: !\nbar: 'red'\nBAZ: true\n--\n")).toThrow(
+			"Cannot use this value for variable 'foo': !"
+		);
+	});
+
 	test('allows setting the same variable multiple times', () => {
 		const result = parse("foo: 2\nfoo: 'red'\n--\n");
 
@@ -53,6 +59,12 @@ describe('parse()', () => {
 		expect(typeof result.vars[1].condition).toBe('function');
 		expect(result.vars[2].name).toBe('baz');
 		expect(typeof result.vars[2].condition).toBe('function');
+	});
+
+	test('throws an error for bad conditional expressions', () => {
+		expect(() => parse("foo (?): 2\nbar: 'red'\nBAZ: true\n--\n")).toThrow(
+			"Cannot use this condition: 'foo (?)'"
+		);
 	});
 
 	test('ignores empty lines in the vars section', () => {

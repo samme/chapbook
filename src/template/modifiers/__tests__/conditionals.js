@@ -152,5 +152,22 @@ describe('conditional modifiers', () => {
 		expect(spyInsert.render).toHaveBeenCalledTimes(0);
 	});
 
+	test('Throws an error for bad syntax', () => {
+		expect(() => {
+			render(
+				{
+					blocks: [
+						{type: 'text', content: 'Hello'},
+						{type: 'modifier', content: 'if !'},
+						{type: 'text', content: 'there'}
+					],
+					vars: []
+				},
+				[],
+				[conditionals]
+			);
+		}).toThrow('Cannot use this condition: [if !]');
+	});
+
 	// TODO: signals an error if else is used without a matching if'
 });
