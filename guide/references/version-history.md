@@ -1,5 +1,9 @@
 # Version History
 
+## 1.2.2, 3 June 2020
+
+- Fixes a bug where number input values for new variables weren't saved if the input was never modified.
+
 ## 1.2.1, 3 June 2020
 
 - Removes extra files from npm release.
