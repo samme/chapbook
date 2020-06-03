@@ -1,5 +1,10 @@
 # Version History
 
+## 1.2.3, 3 June 2020
+
+- Fixes the wrong version number showing in Twine.
+- Fixes missing logo in Twine.
+
 ## 1.2.2, 3 June 2020
 
 - Fixes a bug where number input values for new variables weren't saved if the input was never modified.
