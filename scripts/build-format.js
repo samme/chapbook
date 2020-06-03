@@ -3,13 +3,12 @@ const pkg = require('../package.json');
 
 ['full', 'micro'].forEach(variant => {
 	fs.readFile(`dist/${variant}/index.html`, {encoding: 'utf8'}).then(data => {
-		const formatPath = `dist/${pkg.name.toLowerCase()}-${pkg.version +
-			(variant !== 'full' ? '-' + variant : '')}`;
+		const formatPath = `dist/`;
 
 		fs.mkdirp(formatPath)
 			.then(() =>
 				fs.writeFile(
-					`${formatPath}/format.js`,
+					`${formatPath}/format${variant !== 'full' ? '-' + variant : ''}.js`,
 					'window.storyFormat(' +
 						JSON.stringify({
 							author: pkg.author.replace(/ <.*>/, ''),
