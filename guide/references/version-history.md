@@ -1,5 +1,9 @@
 # Version History
 
+## 1.2.1, 3 June 2020
+
+- Removes extra files from npm release.
+
 ## 1.2.0, 3 June 2020
 
 - Adds a new insert, `{number input for: 'variable'}`.
