@@ -1,5 +1,11 @@
 # Version History
 
+## 1.2.0, 3 June 2020
+
+- Adds a new insert, `{number input for: 'variable'}`.
+- Adds a new lookup, `passage.previous`, the name of the previous passage visited.
+- Adds helpful error messages for parse failures, visible in testing.
+
 ## 1.1.1, 17 May 2020
 
 - Fixes a bug introduced in 1.1.0 where nested lookup variables (like
