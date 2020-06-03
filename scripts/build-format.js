@@ -3,7 +3,7 @@ const pkg = require('../package.json');
 
 ['full', 'micro'].forEach(variant => {
 	fs.readFile(`dist/${variant}/index.html`, {encoding: 'utf8'}).then(data => {
-		const formatPath = `dist/`;
+		const formatPath = `dist`;
 
 		fs.mkdirp(formatPath)
 			.then(() =>
