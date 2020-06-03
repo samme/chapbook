@@ -9,18 +9,15 @@ import htmlify from '../../util/htmlify';
 export default {
 	match: /^number\s+input(\s+for)?/i,
 	render(varName, props) {
-		let value = 0;
+		let value = undefined;
 
 		if (varName) {
 			value = get(varName);
 
-			if (value === undefined) {
-				value = 0;
-			} else if (typeof value !== 'number') {
-				console.warn(
+			if (value !== undefined && typeof value !== 'number') {
+				throw new Error(
 					`The value ${value} for variable '${varName}' is not a number`
 				);
-				value = 0;
 			}
 		}
 
