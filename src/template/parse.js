@@ -27,6 +27,7 @@ This returns an object with two properties:
 
 import splitLines from 'split-lines';
 import logger from '../logger';
+import newFunction from '../util/new-function';
 
 const {log, warn} = logger('parse');
 
@@ -65,7 +66,10 @@ export default function parse(src, opts = defaultOpts) {
 				const value = line.substr(firstColon + 1).trim();
 				const thisVar = {
 					name,
-					value: new Function(`return (${value})`)
+					value: newFunction(
+						`return (${value})`,
+						`Cannot use this value for variable '${name}': ${value}`
+					)
 				};
 
 				/* Look for a (condition) in the name. */
@@ -73,7 +77,10 @@ export default function parse(src, opts = defaultOpts) {
 				const condMatch = name.match(/\(.+\)/);
 
 				if (condMatch) {
-					thisVar.condition = new Function(`return (${condMatch[0]})`);
+					thisVar.condition = newFunction(
+						`return (${condMatch[0]})`,
+						`Cannot use this condition: '${name}'`
+					);
 					thisVar.name = (
 						thisVar.name.substr(0, condMatch.index) +
 						thisVar.name.substr(condMatch.index + condMatch[0].length)
